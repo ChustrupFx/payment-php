@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@show')->name('home.show');
+
 Route::get('/product/{slug}', 'ProductController@show')->name('product.show');
+
+Route::get('/cart/', 'ShoppingCartController@show')->name('shoppingcart.show');
+Route::post('/cart/add/{id}', 'ShoppingCartController@store')->name('shoppingcart.store');
+
 

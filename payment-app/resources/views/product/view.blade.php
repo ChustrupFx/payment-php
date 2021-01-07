@@ -1,6 +1,25 @@
 @extends('layouts.main.root')
 @section('content')
 
+    @if(session('success'))
+
+        <div class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="alert alert-success">
+                            <p>O produto foi adicionado ao seu carrinho de compras!</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    @endif
+
     <section class="container">
         <div class="row">
             
@@ -12,11 +31,25 @@
                 <p>{{ $product->description }}</p>
                 <h3>R${{ $product->price }},00</h3>
                 <div>
-                    <button class="btn btn-success">Adicionar ao carrinho</button>
+                    <form action="{{ route('shoppingcart.store', ['id' => $product->id]) }}" method="post">
+                        @csrf
+                        <button class="btn btn-success">Adicionar ao carrinho</button>
+                    </form>
                 </div>
             </div>
             
         </div>
     </section>
+
+@endsection
+
+@section('scripts')
+
+<script>
+
+
+    $('.modal').modal('show')
+
+</script>
 
 @endsection
