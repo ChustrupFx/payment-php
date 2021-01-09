@@ -17,7 +17,13 @@ Route::get('/', 'HomeController@show')->name('home.show');
 
 Route::get('/product/{slug}', 'ProductController@show')->name('product.show');
 
-Route::get('/cart/', 'ShoppingCartController@show')->name('shoppingcart.show');
+Route::delete('/cart/remove/{id}', 'ShoppingCartController@deleteItem')->name('shoppingcart.deleteItem');
 Route::post('/cart/add/{id}', 'ShoppingCartController@store')->name('shoppingcart.store');
+Route::get('/cart/', 'ShoppingCartController@show')->name('shoppingcart.show');
+
+Route::get('/login', 'UserController@loginShow')->name('login.show');
+Route::post('/login', 'UserController@login')->name('login.do');
+
+Route::get('/checkout', 'CheckoutController@show')->name('checkout.show');
 
 

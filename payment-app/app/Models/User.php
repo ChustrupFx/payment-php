@@ -40,4 +40,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function shoppingCart()
+    {
+        $cart = $this->hasOne(ShoppingCart::class)->first();
+
+        if (is_null($cart)) {
+            $cart = new ShoppingCart();
+            $cart->user()->associate($this);
+            $cart->save();
+        }
+
+        return $cart;
+    }
 }

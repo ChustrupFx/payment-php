@@ -3,7 +3,7 @@
 
     @if(session('success'))
 
-        <div class="modal">
+        <div class="modal show-by-default">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -40,16 +40,5 @@
             
         </div>
     </section>
-
-@endsection
-
-@section('scripts')
-
-<script>
-
-
-    $('.modal').modal('show')
-
-</script>
 
 @endsection
