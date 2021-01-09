@@ -24,6 +24,9 @@ Route::get('/cart/', 'ShoppingCartController@show')->name('shoppingcart.show');
 Route::get('/login', 'UserController@loginShow')->name('login.show');
 Route::post('/login', 'UserController@login')->name('login.do');
 
-Route::get('/checkout', 'CheckoutController@show')->name('checkout.show');
+Route::post('/checkout', 'CheckoutController@checkout')->name('checkout.do')->middleware('web');
+Route::get('/checkout/success', 'CheckoutController@success')->name('checkout.success');
+Route::get('/checkout/cancel', 'CheckoutController@cancel')->name('checkout.cancel');
+
 
 

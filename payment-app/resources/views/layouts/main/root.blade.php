@@ -2,6 +2,7 @@
 <html lang="pt_br">
 <head>
     @include('layouts.main.head')
+    @yield('head')
 </head>
 <body>
 

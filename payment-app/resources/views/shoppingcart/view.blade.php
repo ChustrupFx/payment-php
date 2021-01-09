@@ -1,4 +1,10 @@
 @extends('layouts.main.root')
+@section('head')
+
+    <script src="https://js.stripe.com/v3/"></script>
+
+
+@endsection
 @section('content')
 
     @if(session('success'))
@@ -43,9 +49,39 @@
             @endforeach
             <div class="d-flex justify-content-between">
                 <h3>Total: R${{ $cartTotalPrice }},00</h3>
-                <a href="{{ route('checkout.show') }}" class="btn btn-success">Finalizar compra</a>
+                <button class="btn btn-success" id="checkout-btn">Finalizar compra</button>
             </div>
         </div>
     </div>
+
+@endsection
+@section('scripts')
+
+    <script>
+        const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+        const checkoutBtn = $('#checkout-btn')
+
+        checkoutBtn.click(async () => {
+            try {
+
+                const checkoutResponse = await fetch('{{ route('checkout.do') }}', {
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    method: 'POST',
+                })
+
+                const data = await checkoutResponse.json()
+
+                const result = stripe.redirectToCheckout({ sessionId: data.id })
+
+                if (result.error) {
+                    console.log(error)
+                }
+            } catch {
+                console.log(error)
+            }
+        })
+    </script>
 
 @endsection

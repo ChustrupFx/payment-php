@@ -1,4 +1,6 @@
 @extends('layouts.main.root')
+@section('head')
+@endsection
 @section('content')
 
     <section class="container">
