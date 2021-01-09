@@ -13,7 +13,18 @@
                     <li>
                         <a href="{{ route('login.show') }}" class="btn btn-light">Login</a>
                     </li>
+                    <li>
+                        <a href="{{ route('register.show') }}" class="btn btn-light">Registrar</a>
+                    </li>
                 @endguest
+                @auth()
+                    <li>
+                        <form action="{{ route('logout') }}" method="post">
+                            @csrf
+                            <input type="submit" class="btn btn-light" value="Logout">
+                        </form>
+                    </li>
+                @endauth
             </ul>
         </nav>
 
